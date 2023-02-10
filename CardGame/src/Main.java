@@ -72,7 +72,7 @@ public class Main {
     }
     public static void play(Hand h){ //User picks which card to place
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Which number or face card?");
+        System.out.println("Play which number or face card?");
         int n = 0;
         try {
             n = scanner.nextInt();
@@ -96,7 +96,7 @@ public class Main {
         scanner = new Scanner(System.in);
         System.out.println("Which suit?");
         String s = scanner.nextLine();
-        System.out.println(s);
+        //System.out.println(s);
         s = capFirst(s);
         if(s.equals("no")){
             System.out.println("Input a valid suit");
@@ -105,6 +105,10 @@ public class Main {
         else if(!h.checkSuit(s)){
             System.out.println("You don't have that suit");
             play(h);
+        }
+      if(s.equals(inPlay.getSuit()) == false && n != inPlay.getValue()){
+          System.out.println("Please enter a playable card");
+          play(h);
         }
         inPlay = h.getCard(s,n);
         h.playCard(s,n);
@@ -173,7 +177,7 @@ public class Main {
     }
 
     public static void comPlay(){ //Computer plays card if applicable; draws if not
-        System.out.println(inPlay);
+        //System.out.println(inPlay);
         if(b.canPlay(inPlay.getSuit(), inPlay.getValue())){
             for(int i=0;i<b.cards.size();i++){
                 //System.out.println("Checking: " + b.cards.get(i));
